@@ -1,0 +1,23 @@
+{
+  "name": "README-builder",
+  "version": "1.0.0",
+  "description": "Command-line app written in JavaScript to prompt the user for info to place into a new markdown README.md file.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CChampness/README-builder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CChampness/README-builder/issues"
+  },
+  "homepage": "https://github.com/CChampness/README-builder#readme",
+  "dependencies": {
+    "inquirer": "^8.2.0"
+  }
+}
