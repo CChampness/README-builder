@@ -1,7 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generateMarkDown = require("./generateMarkDown");
-
+const generateMarkdown = require("./generateMarkdown.js");
 // This is a command-line application
 // what the app is for
 // how to use the app
@@ -9,22 +8,7 @@ const generateMarkDown = require("./generateMarkDown");
 // how to install
 // how to report issues
 // how to make contributions
-// [Inquirer package](https://www.npmjs.com/package/inquirer)
 // Based on [Professional README Guide](https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide)
-//////////////////////
-// License badge
-// 
-// Title
-// Table of Contents
-// License (explanation)
-// Description
-// Installation
-// Usage
-// Contributing
-// Tests
-// Questions 
-// --link to github profile
-// --email
 
 // Array of questions for user input
 const questions = [
@@ -33,56 +17,71 @@ const questions = [
     name: 'title',
     message: 'What title will you give this application?',
   },
-//   {
-//     type: 'list',
-//     message: 'What license will you give this application?',
-//     name: 'license',
-//     choices: ['MIT', 'GPL', 'CC-O', 'UnLicense'],
-//   },
-//   {
-//     type: 'input',
-//     message: 'Describe this application:',
-//     name: 'description',
-//   },
-//   {
-//     type: 'input',
-//     message: 'Procedure to install this application:',
-//     name: 'installation',
-//   },
-//   {
-//     type: 'input',
-//     message: 'How to use this application:',
-//     name: 'usage',
-//   },
-//   {
-//     type: 'input',
-//     message: 'How to contribute to this application (github):',
-//     name: 'contributing',
-//   },
-//   {
-//     type: 'input',
-//     message: 'Tests that have been run for this application:',
-//     name: 'tests',
-//   },
-//   {
-//     type: 'input',
-//     message: 'Questions?',
-//     name: 'questions',
-//   },
+  {
+    type: 'input',
+    message: 'Describe this application:',
+    name: 'description',
+  },
+  {
+    type: 'input',
+    message: 'Path or URL to snapshot for this application:',
+    name: 'snapshot',
+  },
+  {
+    type: 'input',
+    message: 'Procedure to install this application:',
+    name: 'installation',
+  },
+  {
+    type: 'input',
+    message: 'How to use this application:',
+    name: 'usage',
+  },
+  {
+    type: 'list',
+    message: 'What license will you give this application?',
+    name: 'license',
+    choices: ['', 'MIT', 'GPL', 'CC-0', 'Unlicense'],
+  },
+  {
+    type: 'input',
+    message: 'How to contribute to this application:',
+    name: 'contributing',
+  },
+  {
+    type: 'input',
+    message: 'Tests that have been run for this application:',
+    name: 'tests',
+  },
+  {
+    type: 'input',
+    message: 'You may credit any collaborators:',
+    name: 'credits',
+  },
+  {
+    type: 'input',
+    message: 'Email for questions or to report issues:',
+    name: 'email',
+  },
+  {
+    type: 'input',
+    message: 'GitHub profile:',
+    name: 'github',
+  },
 ];
 
 inquirer
   .prompt(questions)
   .then((data) => {
     const filename = "generatedREADME.md";
-
-    fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) =>
-      err ? console.log(err) : console.log('Success!')
-    );
+    writeToFile(filename, data);
   });
 
-  // Write README file
-function writeToFile(fileName, data) {}
+// Write README file
+function writeToFile(fileName, answers) {
+  fs.writeFile(fileName, generateMarkdown(answers), (err) =>
+    err ? console.log(err) : console.log('Success!'));
+}
 
 // Initialize app
 function init() {}
