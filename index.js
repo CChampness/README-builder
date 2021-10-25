@@ -41,7 +41,7 @@ const questions = [
     type: 'list',
     message: 'What license will you give this application?',
     name: 'license',
-    choices: ['', 'MIT', 'GPL', 'CC-0', 'Unlicense'],
+    choices: ['<none>', 'MIT', 'GPL', 'CC-0', 'Unlicense'],
   },
   {
     type: 'input',

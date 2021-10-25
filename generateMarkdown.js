@@ -48,7 +48,7 @@ function renderLicenseSection(license) {
 // Generate markdown for README
 function generateMarkdown(ans) {
   let mdString = (`${ans.title}` ? `# ${ans.title}\n` : `# Untitled\n`);
-  if (`${ans.license}`) {
+  if (`${ans.license}` && (`${ans.license}` !== "<none>")) {
     mdString += `
   ${renderLicenseBadge(ans.license)}
   `;
@@ -65,7 +65,7 @@ function generateMarkdown(ans) {
   `;
   }
 
-  if (`${ans.license}` ||
+  if ((`${ans.license}` && (`${ans.license}` !== "<none>")) ||
       `${ans.snapshot}` ||
       `${ans.installation}` ||
       `${ans.usage}` ||
@@ -89,7 +89,7 @@ function generateMarkdown(ans) {
     mdString += `- [Usage](#usage)
   `;
   }
-  if (`${ans.license}`) {
+  if (`${ans.license}` && (`${ans.license}` !== "<none>")) {
     mdString += `- [License](#license)
   `;
   }
@@ -110,7 +110,7 @@ function generateMarkdown(ans) {
   `;
   }
   //////////////////////////////////////////////////////////////
-  if (`${ans.license}`) {
+  if (`${ans.license}` && (`${ans.license}` !== "<none>")) {
     mdString += `## License
   ${renderLicenseLink(ans.license)}
   ${renderLicenseSection(ans.license)}
@@ -118,7 +118,7 @@ function generateMarkdown(ans) {
   }
   if (`${ans.snapshot}`) {
     mdString += `## Snapshot
-    ${ans.snapshot}
+  ![](${ans.snapshot})
   `;
   }
   if (`${ans.installation}`) {
