@@ -1,14 +1,12 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require("./generateMarkdown.js");
-// This is a command-line application
-// what the app is for
-// how to use the app
-// in bash, node index.js
-// how to install
-// how to report issues
-// how to make contributions
-// Based on [Professional README Guide](https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide)
+// This is a command-line application to create a README file.
+// Collect user input for the available sections of the REAEDME file
+// To use the app in bash, thye node index.js
+// To install the app, first npm install the inquirer package
+// The README file that is created will be in mardown format and is based on
+//  the Professional README Guide at (https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide)
 
 // Array of questions for user input
 const questions = [
@@ -41,7 +39,7 @@ const questions = [
     type: 'list',
     message: 'What license will you give this application?',
     name: 'license',
-    choices: ['<none>', 'MIT', 'GPL', 'CC-0', 'Unlicense'],
+    choices: ['<none>', 'MIT', 'GPL', 'Apache', 'BSD'],
   },
   {
     type: 'input',
@@ -70,13 +68,6 @@ const questions = [
   },
 ];
 
-inquirer
-  .prompt(questions)
-  .then((data) => {
-    const filename = "generatedREADME.md";
-    writeToFile(filename, data);
-  });
-
 // Write README file
 function writeToFile(fileName, answers) {
   fs.writeFile(fileName, generateMarkdown(answers), (err) =>
@@ -84,6 +75,13 @@ function writeToFile(fileName, answers) {
 }
 
 // Initialize app
-function init() {}
+function init() {
+  inquirer
+  .prompt(questions)
+  .then((data) => {
+    const filename = "README.md";
+    writeToFile(filename, data);
+  });
+}
 
 init();

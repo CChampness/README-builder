@@ -1,4 +1,4 @@
-// Return a license badge based for the requested license
+// Return a license badge for the requested license
 function renderLicenseBadge(license) {
   switch (license) {
     case "MIT":
@@ -7,17 +7,16 @@ function renderLicenseBadge(license) {
     case "GPL":
       return `![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)`;
       break;
-    case "CC-0":
-      return `![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)`;
+    case "Apache":
+      return `![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)`;
       break;
-    case "Unlicense":
-      return `![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)`;
+    case "BSD":
+      return `![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)`;
       break;
   }
 }
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
+// Return the license link
 function renderLicenseLink(license) {
   switch (license) {
     case "MIT":
@@ -28,25 +27,42 @@ function renderLicenseLink(license) {
       return `Details: https://www.gnu.org/licenses/gpl-3.0
       `;
       break;
-    case "CC-0":
-      return `Need link
+    case "Apache":
+      return `Details: https://opensource.org/licenses/Apache-2.0
       `;
       break;
-    case "Unlicense":
-      return `Details: http://unlicense.org/
+    case "BSD":
+      return `Details: https://opensource.org/licenses/BSD-3-Clause
       `;
       break;
   }
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
+// Returns the license section of README
 function renderLicenseSection(license) {
-  return "Explanation of the license will go here";
+  switch (license) {
+    case "MIT":
+    return `This application is provided under the MIT Open Source license
+    `;
+    break;
+  case "GPL":
+    return `This application is provided under the GNU GPL 3.0 license
+    `;
+    break;
+  case "Apache":
+    return `This application is provided under the Apache 2.0 license
+    `;
+    break;
+  case "BSD":
+    return `This application is provided under the BSD 3-Clause license
+    `;
+    break;
+  }
 }
 
 // Generate markdown for README
 function generateMarkdown(ans) {
+  // If the user dpesn't provide a title, just put "Untitled"
   let mdString = (`${ans.title}` ? `# ${ans.title}\n` : `# Untitled\n`);
   if (`${ans.license}` && (`${ans.license}` !== "<none>")) {
     mdString += `
@@ -65,6 +81,9 @@ function generateMarkdown(ans) {
   `;
   }
 
+  // Create the Table of Contents
+  // Only include sections that the user provided input for
+  // Most sections are optional
   if ((`${ans.license}` && (`${ans.license}` !== "<none>")) ||
       `${ans.snapshot}` ||
       `${ans.installation}` ||
@@ -109,11 +128,12 @@ function generateMarkdown(ans) {
     mdString += `- [Questions?](#questions)
   `;
   }
-  //////////////////////////////////////////////////////////////
+  // Write out the sections of the README.
+  // The user might not have provided input for all sections
   if (`${ans.license}` && (`${ans.license}` !== "<none>")) {
     mdString += `## License
-  ${renderLicenseLink(ans.license)}
   ${renderLicenseSection(ans.license)}
+  ${renderLicenseLink(ans.license)}
   `;
   }
   if (`${ans.snapshot}`) {
@@ -148,11 +168,14 @@ function generateMarkdown(ans) {
   }
   if (`${ans.email}` || `${ans.github}`) {
     mdString += `## Questions
-    ${ans.email}
-    ${ans.github}
+    Please feel free to contact us
+    email: ${ans.email}
+    GitHub profile: ${ans.github}
   `;
   }
   return mdString;
 }
 
+// Make the functions n this file available to any
+// functions that need to call them.
 module.exports = generateMarkdown;
