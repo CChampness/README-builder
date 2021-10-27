@@ -30,7 +30,12 @@ TBD
 ## Collaborators 
 none
 ## Questions
+
 Please feel free to contact us
+
 email: champnesschris@gmail.com
+
 GitHub profile: https://github.com/CChampness
 
+## Video of procedure
+https://drive.google.com/file/d/1OBypEbxEGBYQ3lwCuqNNo9O2IzD0hUVL/view
