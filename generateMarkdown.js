@@ -129,7 +129,8 @@ function generateMarkdown(ans) {
   `;
   }
   // Write out the sections of the README.
-  // The user might not have provided input for all sections
+  // The user might not have provided input for all sections,
+  // in which case, skip over any that the user doesn't provide.
   if (`${ans.license}` && (`${ans.license}` !== "<none>")) {
     mdString += `## License
   ${renderLicenseSection(ans.license)}
@@ -168,7 +169,7 @@ function generateMarkdown(ans) {
   }
   if (`${ans.email}` || `${ans.github}`) {
     mdString += `## Questions
-    Please feel free to contact us
+    Please feel free to contact us or to report issues
     email: ${ans.email}
     GitHub profile: ${ans.github}
   `;

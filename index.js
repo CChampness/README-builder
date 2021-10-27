@@ -1,12 +1,13 @@
-const inquirer = require('inquirer');
-const fs = require('fs');
-const generateMarkdown = require("./generateMarkdown.js");
 // This is a command-line application to create a README file.
 // Collect user input for the available sections of the REAEDME file
 // To use the app in bash, thye node index.js
 // To install the app, first npm install the inquirer package
 // The README file that is created will be in mardown format and is based on
 //  the Professional README Guide at (https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide)
+
+const inquirer = require('inquirer');
+const fs = require('fs');
+const generateMarkdown = require("./generateMarkdown.js");
 
 // Array of questions for user input
 const questions = [
